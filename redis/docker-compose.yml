@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis-server:
+    image: redis:5-alpine
+    container_name: redis-server
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-storage:/data
+    ports:
+      - 6379:6379
+    network_mode: "bridge"
+volumes:
+  redis-storage:
